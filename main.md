@@ -30,10 +30,10 @@ The $V_B^-$ defect in hBN exhibits $D_{3h}$ point-group symmetry in its idealize
 
 | Defect State | Orbital Origin | Degeneracy | 
 |:---:|:---:|:---:|
-| $a_1''$ | in-plane $sp^2$ ($\sigma$) | 1 |
-| $e'$ | in-plane $sp^2$ ($\sigma$) | 2 |
-| $a_2''$ | out-of-plane $2p_z$ ($\pi$) | 1 |
-| $e''$ | out-of-plane $2p_z$ ($\pi$) | 2 |
+| <i>a</i><sub>1</sub>'' | in-plane <i>sp</i><sup>2</sup> (&sigma;) | 1 |
+| <i>e</i>' | in-plane <i>sp</i><sup>2</sup> (&sigma;) | 2 |
+| <i>a</i><sub>2</sub>'' | out-of-plane 2<i>p<sub>z</sub></i> (&pi;) | 1 |
+| <i>e</i>'' | out-of-plane 2<i>p<sub>z</sub></i> (&pi;) | 2 |
 
 </div>
 
@@ -963,8 +963,8 @@ To evaluate the accuracy and validity of our hybrid quantum-classical pipeline, 
 | **Experiment** | 1.60 | Qian et al. 2022<a href="#ref7">[7]</a> |
 | **Classical CASSCF** | 1.4973 | This Project |
 | **Quantum VQE/VQD** | 1.4972 | This Project |
-| **PBE $\Delta$SCF** | 1.63 | This Project |
-| **HSE06 $\Delta$SCF** | 1.71| Ivády et al. 2020<a href="#ref1">[1]</a> |
+| **PBE &Delta;SCF** | 1.63 | This Project |
+| **HSE06 &Delta;SCF** | 1.71| Ivády et al. 2020<a href="#ref1">[1]</a> |
 
 </div>
 
