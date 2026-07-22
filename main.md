@@ -17,7 +17,7 @@ In this project, we apply a hybrid classical-quantum embedding approach to study
 The $V_B^-$ defect in hexagonal boron nitride has emerged as a higly promising solid-state color center for application in quantum sensing and quantum information processing<a href="#ref4">[4]</a>. To model this localized defect and ensure our electronic structure calculations are grounded in physically accurate geometries, the inital structural optimization was performed using periodic Density Functional Theory(DFT). Specifically, we utilized Quantum Espresso<a href="#ref14">[14]</a> with the PBE exchange-coorelation functional to relax a 49-atom hBN supercell. This periodic relaxation effectively captures the bulk dynamics, providing the optimized, atomic coordinates for both the highly symmetric ground state and the Jahn-Teller distorted excited state.
 
 <p align="center">
-  <img src="hBN_supercell.jpeg" width="700">
+  <img src="images/hBN_supercell.jpeg" width="700">
 </p>
 
 While periodic DFT is ideal for structural relaxation, executing highly correlated, multi-reference wavefunction calculations on a full 49-atom supercell is computationally intractable. To facilitate the subsequent Restricted Open-Shell Hartree-Fock (ROHF) and Complete Active Space (CAS) calculations in PySCF<a href="#ref15">[15]</a>, we constructed a comparatively smaller finite molecular cluster, balancing computational feasibility at the cost of some long-range accuracy. We extracted a 21-atom core from the optimized supercell, capturing the central missing boron atom (the vacancy) alongside the immediate surrounding shells of active nitrogen and boron atoms. To effectively truncate the boundaries of the 2D crystal and prevent artificial edge effects, this finite system was passivated with 18 capping hydrogen atoms positioned according to the local bonding geometry.
@@ -44,7 +44,7 @@ To form the fully characterized $V_B^-$ defect, these six isolated molecular orb
 Our classical mean-field initialization employs Density Functional Theory (DFT) using PBE functional. While PBE accurately captures the qualitative orbital ordering and localization, it is documented that standard semi-local functionals systematically underestimate the fundamental bandgap of systems like hBN. Consequently, PBE also underestimates the optical transition energies and the Zero-Phonon Line (ZPL). For highly accurate quantitative bandgaps and excitation energies, one can employ hybrid functionals such as HSE06, which correct this underestimation by incorporating a fraction of exact Hartree-Fock exchange.
 
 <p align="center">
-  <img src="band_structure.jpg" width="700">
+  <img src="images/band_structure.jpg" width="700">
 </p>
 
 Despite the bandgap underestimation, our PBE-calculated spin-polarized band structure and Projected Density of States (PDOS) perfectly capture the essential defect physics and it is in agreement with the reported data<a href="#ref3">[3]</a>. The defect states appear as flat dispersionless bands completely isolated from the bulk continuum. The left and middle panels display the energy dispersion along high-symmetry k-points ($\Gamma - M - K - \Gamma$) for the majority (Spin Up) and minority (Spin Down) spin channels, respectively. Within the bandgap of the host hBN lattice, the defect introduces isolated, deep-level electronic states.
@@ -56,7 +56,7 @@ The right panel isolates the density of states originating strictly from the thr
 Following the Franck-Condon principle, optical absorption occurs as a vertical transition, because the absorption of a photon is virtually instantaneous compared to the sluggish movement of the heavy hBN nuclei. Immediately following this vertical excitation, the defect is left in a highly excited vibrational state of the upper electronic manifold. To minimize its energy, the surrounding hBN lattice undergoes a rapid structural reorganization to a new equilibrium geometry, dissipating the excess energy ($\Delta E_e$) via the emission of phonons into the bulk lattice. Following the photon emission, a similar structural relaxation occurs in the ground state, dissipating the energy $\Delta E_g$ as the lattice returns to its original configuration.
 
 <p align="center">
-  <img src="cc_diagram.jpeg" width="400">
+  <img src="images/cc_diagram.jpeg" width="400">
 </p>
 
 The Zero-Phonon Line (ZPL), denoted as $E_{ZPL}$ in the diagram<a href="#ref9">[9]</a>, is defined as the energy difference between the absolute lowest vibrational levels (the zero-point energies) of the excited and ground electronic states. It represents the purely electronic, elastic transition where absolutely no phonons are created or annihilated in the host lattice. Because ZPL photons are decoupled from the thermal vibrations of the host material, they are highly coherent and indistinguishable, which can be helpful for utilizing the defect as a high-fidelity spin-photon interface.
@@ -343,7 +343,7 @@ with open("hBN_defect_cluster_excited.xyz", "w") as f:
 The rendering below, generated from the exported `.xyz` files, provides a clear visual confirmation of the defect's localized geometry and the resulting structural relaxation. 
 
 <p align="center">
-  <img src="mol_cluster.jpeg" width="700">
+  <img src="images/mol_cluster.jpeg" width="700">
 </p>
 
 *   **Ground State (Left):** The distances between the three nearest-neighbor Nitrogen atoms surrounding the central vacancy are perfectly uniform at 2.604 Å. This confirms that the defect's ground electronic state maintains a highly symmetric $C_{3v}$ point-group configuration. 
@@ -642,7 +642,7 @@ print("--- Cube Files Generated for Active Space Orbitals ---")
 The isosurface plots given below display the six frontier molecular orbitals (indices 36-41) selected for our ground state active space. The green and magenta lobes represent the positive and negative phases of the electron wavefunction, respectively. As mathematically predicted by our spatial weight analysis, the electron density is highly localized around the central Boron vacancy and its three nearest-neighbor Nitrogen atoms.
 
 <p align="center">
-  <img src="gd_orbitals.jpg" width="700">
+  <img src="images/gd_orbitals.jpg" width="700">
 </p>
 
 ### Excited State Defect Orbitals
@@ -650,7 +650,7 @@ The isosurface plots given below display the six frontier molecular orbitals (in
 The rendering visualizes the equivalent six active space orbitals for the excited state geometry. While the strong electronic localization at the defect site remains intact—confirming we are tracking the same physical deep-level states—the spatial symmetry of the lobes is distinctly altered. This visual asymmetry is a direct manifestation of the Jahn-Teller distortion, illustrating how the atomic structural relaxation physically reshapes the electronic environment to lift the orbital degeneracy.
 
 <p align="center">
-  <img src="ex_orbitals.jpg" width="700">
+  <img src="images/ex_orbitals.jpg" width="700">
 </p>
 
 ## Variational Quantum Simulation Framework
