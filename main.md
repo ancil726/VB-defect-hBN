@@ -48,7 +48,7 @@ The right panel isolates the density of states originating strictly from the thr
 Following the Franck-Condon principle, optical absorption occurs as a vertical transition, because the absorption of a photon is virtually instantaneous compared to the sluggish movement of the heavy hBN nuclei. Immediately following this vertical excitation, the defect is left in a highly excited vibrational state of the upper electronic manifold. To minimize its energy, the surrounding hBN lattice undergoes a rapid structural reorganization to a new equilibrium geometry, dissipating the excess energy ($\Delta E_e$) via the emission of phonons into the bulk lattice. Following the photon emission, a similar structural relaxation occurs in the ground state, dissipating the energy $\Delta E_g$ as the lattice returns to its original configuration.
 
 <p align="center">
-  <img src="cc_diagram.jpeg" width="700">
+  <img src="cc_diagram.jpeg" width="400">
 </p>
 
 The Zero-Phonon Line (ZPL), denoted as $E_{ZPL}$ in the diagram<a href="#ref9">[9]</a>, is defined as the energy difference between the absolute lowest vibrational levels (the zero-point energies) of the excited and ground electronic states. It represents the purely electronic, elastic transition where absolutely no phonons are created or annihilated in the host lattice. Because ZPL photons are decoupled from the thermal vibrations of the host material, they are highly coherent and indistinguishable, which can be helpful for utilizing the defect as a high-fidelity spin-photon interface.
