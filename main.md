@@ -1,5 +1,5 @@
 $$ 
-\textbf{Hybrid Classical-Quantum Embedding Approach for } \boldsymbol{V_B^-} \textbf{ Defect in Hexagonal Boron Nitride (hBN)} 
+\huge \textbf{Hybrid Classical-Quantum Embedding Approach for } V_B^- \textbf{ Defect in Hexagonal Boron Nitride (hBN)} 
 $$
 
 ## Introduction
@@ -24,16 +24,18 @@ While periodic DFT is ideal for structural relaxation, executing highly correlat
 
 The $V_B^-$ defect in hBN exhibits $D_{3h}$ point-group symmetry in its idealized, unrelaxed lattice configuration. The removal of a single boron atom leaves behind unpassivated "dangling bonds" on the three immediately adjacent nitrogen atoms, which primarily dictate the defect's localized electronic properties. These atomic orbitals consist of three in-plane $sp^2$($\sigma$) hybridized orbitals and three out-of-plane 2$p_z$ ($\pi$) orbitals. Following the symmetry rules of the $D_{3h}$ group, these six atomic orbitals hybridize to form six symmetry-adapted defect molecular orbitals (MOs)<a href="#ref2">[2]</a>. Specifically, the in-plane $sp^2$ bonds combine to produce one non-degenerate $a_1$' state and two degenerate $e$' states, while the out-of-plane $p_z$ orbitals combine into one non-degenerate $a_2$'' state and two degenerate $e$'' states.
 
-<div align="center">
-
-| Defect State | Orbital Origin | Degeneracy | 
-|:----------:|:----------:|:----------:|
-| $a_1$'' | in-plane $sp^2$ ($\sigma$) | 1 |
-| $e$' | In-plane $sp^2$ ($\sigma$) | 2 |
-| $a_2$'' | Out-of-plane 2$p_z$ ($\pi$) | 1 |
-| $e$'' | Out-of-plane 2$p_z$ ($\pi$) | 2 |
-
-</div>
+$$
+\begin{array}{|c|c|c|}
+\hline
+\textbf{Defect State} & \textbf{Orbital Origin} & \textbf{Degeneracy} \\
+\hline
+a_1'' & \text{in-plane } sp^2 (\sigma) & 1 \\
+e' & \text{in-plane } sp^2 (\sigma) & 2 \\
+a_2'' & \text{out-of-plane } 2p_z (\pi) & 1 \\
+e'' & \text{out-of-plane } 2p_z (\pi) & 2 \\
+\hline
+\end{array}
+$$
 
 To form the fully characterized $V_B^-$ defect, these six isolated molecular orbitals must accommodate a total of 10 active electrons: nine contributed natively by the surrounding nitrogen atoms, plus one extra electron captured from the lattice environment. The majority of these highly localized states reside deep within the wide fundamental bandgap of the hBN host, largely isolating them from the bulk valence and conduction bands. In the ground-state electronic configuration, the lowest-energy defect orbitals are completely filled, leaving the doubly degenerate $e$′ orbital exactly half-occupied by two electrons. Dictated by Hund’s rules, these two electrons align with parallel spins to minimize Coulombic repulsion, yielding a highly correlated, spin-triplet (S=1) ground state formally designated as $^3A'_2$<a href="#ref1">[1]</a>.
 
