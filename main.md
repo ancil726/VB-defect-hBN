@@ -1,8 +1,6 @@
-<div align="center">
-
-# Hybrid Classical-Quantum Embedding Approach for $V_B^-$ Defect in Hexagonal Boron Nitride(hBN)
-
-</div>
+$$ 
+\textbf{Hybrid Classical-Quantum Embedding Approach for } \boldsymbol{V_B^-} \textbf{ Defect in Hexagonal Boron Nitride (hBN)} 
+$$
 
 ## Introduction
 
