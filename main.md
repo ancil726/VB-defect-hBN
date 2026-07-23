@@ -927,7 +927,7 @@ print(f"\n ZPL(Classical): {ZPL_Exact_eV:.4f} eV")
      ZPL(Classical): 1.4973 eV
 
 
-### Constrained Occupation ($\Delta$SCF) Calculation
+### Constrained Occupation ($\Delta$ SCF) Calculation
 
 To fully contextualize the accuracy of our quantum simulation, we compare our hybrid quantum ZPL against a purely classical Density Functional Theory (DFT) baseline. For this, we utilized the **constrained occupation ($\Delta$SCF) method** within Quantum Espresso<a href="#ref14">[14]</a>. 
 
@@ -948,7 +948,7 @@ Using the standard conversion factor ($1 \text{ Ry} \approx 13.6057 \text{ eV}$)
 $$ \text{ZPL}_{} = 0.11982037 \text{ Ry} \times 13.6057 \text{ eV/Ry} = \mathbf{1.6302 \text{ eV}} $$
 
 
-The constrained occupation $\Delta$SCF calculation yields a ZPL of approximately $1.63 \text{ eV}$. Interestingly, this purely classical DFT result falls deceptively close to known experimental optical transitions for this defect. However, it is critical to recognize that this apparent accuracy is an artifact of fortuitous error cancellation rather than physical rigor. 
+The constrained occupation $\Delta$ SCF calculation yields a ZPL of approximately $1.63 \text{ eV}$. Interestingly, this purely classical DFT result falls deceptively close to known experimental optical transitions for this defect. However, it is critical to recognize that this apparent accuracy is an artifact of fortuitous error cancellation rather than physical rigor. 
 
 It is documented in the literature that the PBE functional systematically suffers from severe self-interaction errors and drastically underestimates the fundamental bandgap and localized state energies of wide-gap insulators like hBN<a href="#ref12">[12]</a>. The fact that the $\Delta$SCF method produces a seemingly reasonable ZPL is an unexpected coincidence where the massive energetic errors in the ground and excited state geometries happen to cancel each other out<a href="#ref6">[6]</a>.
 
