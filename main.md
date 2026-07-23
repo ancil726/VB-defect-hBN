@@ -192,7 +192,7 @@ print(f"Vacancy to N25_ex: {dist(vacancy, N25_ex):.5f} Å")
 
 
 \
-As confirmed by the output, the ground state maintains a perfect $D_{3h}$ symmetry, with all three nearest-neighbor nitrogen bonds being identical at 1.50356 <p> &angst; </p>. 
+As confirmed by the output, the ground state maintains a perfect $D_{3h}$ symmetry, with all three nearest-neighbor nitrogen bonds being identical at 1.50356 $\AA$. 
 
 However, the excited state undergoes a spontaneous structural relaxation known as the **Jahn-Teller distortion**. Because the excited electronic state is orbitally degenerate, the system lowers its overall energy by breaking its highly symmetric geometry. This symmetry breaking is clearly evident in the unequal bond lengths of the excited cluster, which lifts the electronic degeneracy and physically drives the defect into a new, stable configuration.
 
@@ -204,7 +204,7 @@ To place these caps physically, we use the local geometry of the cluster. For ea
 1. Identify its two nearest neighbors within the cluster.
 2. Calculate the unit vectors pointing from the boundary atom to these neighbors.
 3. Determine the direction exactly opposite to the vector sum of these bonds, simulating the trajectory of the missing lattice connection.
-4. Place a Hydrogen atom along this trajectory using standard equilibrium bond lengths (B-H = 1.19 $AA$, N-H = 1.01 $AA$).
+4. Place a Hydrogen atom along this trajectory using standard equilibrium bond lengths (B-H = 1.19 $\AA$, N-H = 1.01 $\AA$).
 
 
 ```python
@@ -346,8 +346,8 @@ The rendering below, generated from the exported `.xyz` files, provides a clear 
   <img src="images/mol_cluster.jpeg" width="700">
 </p>
 
-*   **Ground State (Left):** The distances between the three nearest-neighbor Nitrogen atoms surrounding the central vacancy are perfectly uniform at 2.604 $AA$. This confirms that the defect's ground electronic state maintains a highly symmetric $D_{3h}$ point-group configuration. 
-*   **Excited State (Right):** Following optical excitation, the system undergoes a spontaneous **Jahn-Teller distortion**. To lower the energy of the orbitally degenerate excited state, the geometry relaxes and breaks the initial threefold symmetry. This is clearly visible in the uneven Nitrogen-to-Nitrogen distances (2.6376 $AA$, 2.6393 $AA$, and 2.5408 $AA$) as the lattice settles into a lower-symmetry $C_{2v}$ configuration.
+*   **Ground State (Left):** The distances between the three nearest-neighbor Nitrogen atoms surrounding the central vacancy are perfectly uniform at 2.604 $\AA$. This confirms that the defect's ground electronic state maintains a highly symmetric $D_{3h}$ point-group configuration. 
+*   **Excited State (Right):** Following optical excitation, the system undergoes a spontaneous **Jahn-Teller distortion**. To lower the energy of the orbitally degenerate excited state, the geometry relaxes and breaks the initial threefold symmetry. This is clearly visible in the uneven Nitrogen-to-Nitrogen distances (2.6376 $\AA$, 2.6393 $\AA$, and 2.5408 $\AA$) as the lattice settles into a lower-symmetry $C_{2v}$ configuration.
 
 ### SCF Calculation
 
