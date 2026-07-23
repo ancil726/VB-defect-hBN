@@ -65,9 +65,9 @@ The Zero-Phonon Line (ZPL), denoted as $E_{ZPL}$ in the diagram<a href="#ref9">[
 
 The primary objective of this study is to demonstrate a proof-of-concept framework for simulating the $V_B^-$ defect in hBN by integrating classical ab-initio methods with near-term quantum algorithms to compute the Zero-Phonon Line(ZPL). By isolating the strongly correlated electrons into a defined active space, we can offload the most computationally demanding part of the simulation onto a quantum coprocessor.
 
-To achieve this, we used a modular, four-step pipeline combining PySCF for the classical environment and Qiskit for the quantum simulation:
-* **Classical Pre-processing**: PySCF<a href="#ref15">[15]</a> executes ROHF and State-Averaged CASSCF(10,6) calculations to isolate the active space and extract the essential interaction integrals($h_1$, $h_2$) and core energy shifts($E_{core}$) for both ground and excited state geometries.
-- **Hamiltonian Mapping**: Qiskit<a href="#ref16">[16]</a> transforms the classical integrals into fermionic operators, applying a Parity Mapper with 2-qubit reduction to yield an efficient, compressed 10-qubit Hamiltonian.
+To achieve this, we used a modular, four-step pipeline combining PySCF<a href="#ref15">[15]</a> for the classical environment and Qiskit<a href="#ref16">[16]</a> for the quantum simulation:
+* **Classical Pre-processing**: PySCF executes ROHF and State-Averaged CASSCF(10,6) calculations to isolate the active space and extract the essential interaction integrals($h_1$, $h_2$) and core energy shifts($E_{core}$) for both ground and excited state geometries.
+- **Hamiltonian Mapping**: Qiskit transforms the classical integrals into fermionic operators, applying a Parity Mapper with 2-qubit reduction to yield an efficient, compressed 10-qubit Hamiltonian.
 + **Variational Quantum Optimization**: A Variational Quantum Eigensolver(VQE) pipline(UCCSD ansatz, L-BFGS-G Optimizer) minimizes the ground state, while a Variational Quantum Deflation(VQD) approach resloves the excited state.
 * **ZPL Evaluation and Benchmarking**: The quantum eigenvalues and classical core shifts are recombined to compute the final ZPL. This quantum derived result is explicitly validated against exact classical Full Configuration Interaction(FCI) calcualtions and further benchmarked against a classical reference ZPL obtained via constrained occupation($\Delta$SCF) methods.
 
