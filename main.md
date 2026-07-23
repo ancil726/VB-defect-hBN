@@ -49,7 +49,7 @@ Our classical mean-field initialization employs Density Functional Theory (DFT) 
 
 Despite the bandgap underestimation, our PBE-calculated spin-polarized band structure and Projected Density of States (PDOS) perfectly capture the essential defect physics and it is in agreement with the reported data<a href="#ref3">[3]</a>. The defect states appear as flat dispersionless bands completely isolated from the bulk continuum. The left and middle panels display the energy dispersion along high-symmetry k-points ($\Gamma - M - K - \Gamma$) for the majority (Spin Up) and minority (Spin Down) spin channels, respectively. Within the bandgap of the host hBN lattice, the defect introduces isolated, deep-level electronic states.
 
-The right panel isolates the density of states originating strictly from the three nearest-neighbor "active" Nitrogen atoms surrounding the vacancy. The sharp PDOS peaks align perfectly with the flat bands in the dispersion plot, revealing the exact atomic character of these localized states. The dominant contributions to the flat defect band inside the deep band gap arise from the strongly interacting in-plane $sp^2$ dangling bonds<a href="#ref3">[3]</a>. When the central Boron atom is removed, the broken bonds on the adjacent Nitrogens point directly into the vacancy, completely dominating the electronic signature of the defect. The out-of-plane $p_z$ orbital contribute to the defect state which sits right above the valance band. It is reported that other defect states may sits deeper inside the bulk continuum and not be visible at the gap.
+The right panel isolates the density of states originating strictly from the three nearest-neighbor "active" Nitrogen atoms surrounding the vacancy. The sharp PDOS peaks align perfectly with the flat bands in the dispersion plot, revealing the exact atomic character of these localized states. The dominant contributions to the flat defect band inside the deep band gap arise from the strongly interacting in-plane $sp^2$ dangling bonds<a href="#ref3">[3]</a>. When the central Boron atom is removed, the broken bonds on the adjacent Nitrogens point directly into the vacancy, completely dominating the electronic signature of the defect. The out-of-plane $p_z$ orbital contribute to the defect state which sits right above the valance band. It is reported that other defect states may sits deeper inside the bulk continuum and not be visible at the gap<a href="#ref2">[2]</a>,<a href="#ref3">[3]</a>.
 
 ### The Zero Phonon Line (ZPL)
 
@@ -65,7 +65,7 @@ The Zero-Phonon Line (ZPL), denoted as $E_{ZPL}$ in the diagram<a href="#ref9">[
 
 The primary objective of this study is to demonstrate a proof-of-concept framework for simulating the $V_B^-$ defect in hBN by integrating classical ab-initio methods with near-term quantum algorithms to compute the Zero-Phonon Line(ZPL). By isolating the strongly correlated electrons into a defined active space, we can offload the most computationally demanding part of the simulation onto a quantum coprocessor.
 
-To achieve this, we used a modular, four-step pipeline combining PySCF<a href="#ref15">[15]</a> for the classical environment and Qiskit<a href="#ref16">[16]</a> for the quantum simulation:
+To achieve this, we used a four-step pipeline combining PySCF<a href="#ref15">[15]</a> for the classical environment and Qiskit<a href="#ref16">[16]</a> for the quantum simulation:
 * **Classical Pre-processing**: PySCF executes ROHF and State-Averaged CASSCF(10,6) calculations to isolate the active space and extract the essential interaction integrals($h_1$, $h_2$) and core energy shifts($E_{core}$) for both ground and excited state geometries.
 - **Hamiltonian Mapping**: Qiskit transforms the classical integrals into fermionic operators, applying a Parity Mapper with 2-qubit reduction to yield an efficient, compressed 10-qubit Hamiltonian.
 + **Variational Quantum Optimization**: A Variational Quantum Eigensolver(VQE) pipline(UCCSD ansatz, L-BFGS-G Optimizer) minimizes the ground state, while a Variational Quantum Deflation(VQD) approach resloves the excited state.
@@ -73,7 +73,7 @@ To achieve this, we used a modular, four-step pipeline combining PySCF<a href="#
 
 ## Classical Pre-processing
 
-Before building the molecular cluster and defining our active space, we first initialize our computational environment. This workflow relies heavily on **PySCF** for the classical mean-field calculations, and **Qiskit** for the quantum embedding and variational algorithms.
+Before building the molecular cluster and defining our active space, we first initialize our computational environment. This workflow relies heavily on PySCF for the classical mean-field and multi-reference calculations, and Qiskit for the quantum embedding and variational algorithms.
 
 
 ```python
@@ -94,7 +94,7 @@ from qiskit_nature.second_q.circuit.library import HartreeFock, UCCSD
 from qiskit_nature.second_q.hamiltonians import ElectronicEnergy
 ```
 
-To model the defect environment, we extract a finite 21-atom core from the optimized supercell by converting fractional lattice vectors into Cartesian coordinates. We then passivate the boundaries of this finite cluster with 18 capping hydrogen atoms based on the local bonding geometry to prevent artificial edge effects.
+To model the defect environment, we extract a finite 12-atom core from the optimized supercell by converting fractional lattice vectors into Cartesian coordinates. We then passivate the boundaries of this finite cluster with 9 capping hydrogen atoms based on the local bonding geometry to prevent artificial edge effects.
 
 
 ```python
@@ -168,7 +168,7 @@ print('-'*30)
 print(f"Vacancy to N14_gd: {dist(vacancy, N14_gd):.5f} Å")
 print(f"Vacancy to N16_gd: {dist(vacancy, N16_gd):.5f} Å")
 print(f"Vacancy to N25_gd: {dist(vacancy, N25_gd):.5f} Å")
-print("Perfect C3v Symmetry.")
+print("Perfect D3h Symmetry.")
 
 print("\nEXCITED STATE: Shell 1 Symmetry")
 print('-'*30)
@@ -182,7 +182,7 @@ print(f"Vacancy to N25_ex: {dist(vacancy, N25_ex):.5f} Å")
     Vacancy to N14_gd: 1.50356 Å
     Vacancy to N16_gd: 1.50356 Å
     Vacancy to N25_gd: 1.50356 Å
-    Perfect C3v Symmetry.
+    Perfect D3h Symmetry.
     
     EXCITED STATE: Shell 1 Symmetry
     ------------------------------
@@ -192,7 +192,7 @@ print(f"Vacancy to N25_ex: {dist(vacancy, N25_ex):.5f} Å")
 
 
 \
-As confirmed by the output, the ground state maintains a perfect $C_{3v}$ symmetry, with all three nearest-neighbor nitrogen bonds being identical at 1.50356 Å. 
+As confirmed by the output, the ground state maintains a perfect $D_{3h}$ symmetry, with all three nearest-neighbor nitrogen bonds being identical at 1.50356 Å. 
 
 However, the excited state undergoes a spontaneous structural relaxation known as the **Jahn-Teller distortion**. Because the excited electronic state is orbitally degenerate, the system lowers its overall energy by breaking its highly symmetric geometry. This symmetry breaking is clearly evident in the unequal bond lengths of the excited cluster, which lifts the electronic degeneracy and physically drives the defect into a new, stable configuration.
 
@@ -204,7 +204,7 @@ To place these caps physically, we use the local geometry of the cluster. For ea
 1. Identify its two nearest neighbors within the cluster.
 2. Calculate the unit vectors pointing from the boundary atom to these neighbors.
 3. Determine the direction exactly opposite to the vector sum of these bonds, simulating the trajectory of the missing lattice connection.
-4. Place a Hydrogen atom along this trajectory using standard equilibrium bond lengths ($B-H = 1.19$ Å, $N-H = 1.01$ Å).
+4. Place a Hydrogen atom along this trajectory using standard equilibrium bond lengths (B-H = 1.19 $AA$, N-H = 1.01 $AA$).
 
 
 ```python
@@ -346,8 +346,8 @@ The rendering below, generated from the exported `.xyz` files, provides a clear 
   <img src="images/mol_cluster.jpeg" width="700">
 </p>
 
-*   **Ground State (Left):** The distances between the three nearest-neighbor Nitrogen atoms surrounding the central vacancy are perfectly uniform at 2.604 Å. This confirms that the defect's ground electronic state maintains a highly symmetric $C_{3v}$ point-group configuration. 
-*   **Excited State (Right):** Following optical excitation, the system undergoes a spontaneous **Jahn-Teller distortion**. To lower the energy of the orbitally degenerate excited state, the geometry relaxes and breaks the initial threefold symmetry. This is clearly visible in the uneven Nitrogen-to-Nitrogen distances (2.6376 Å, 2.6393 Å, and 2.5408 Å) as the lattice settles into a lower-symmetry configuration.
+*   **Ground State (Left):** The distances between the three nearest-neighbor Nitrogen atoms surrounding the central vacancy are perfectly uniform at 2.604 $AA$. This confirms that the defect's ground electronic state maintains a highly symmetric $D_{3h}$ point-group configuration. 
+*   **Excited State (Right):** Following optical excitation, the system undergoes a spontaneous **Jahn-Teller distortion**. To lower the energy of the orbitally degenerate excited state, the geometry relaxes and breaks the initial threefold symmetry. This is clearly visible in the uneven Nitrogen-to-Nitrogen distances (2.6376 $AA$, 2.6393 $AA$, and 2.5408 $AA$) as the lattice settles into a lower-symmetry $C_{2v}$ configuration.
 
 ### SCF Calculation
 
@@ -423,7 +423,7 @@ print(f"Spin squared <S^2>: {mf_ex.spin_square()[0]:.4f}")
 
 To construct a physically meaningful active space for our quantum embedding calculations, we must first distinguish the molecular orbitals (MOs) that correspond to the localized defect states from those making up the bulk hBN crystal bonds.
 
-Since the $V_B^-$ defect wavefunctions are tightly bound to the vacancy, they exhibit strong spatial localization on the three nearest-neighbor Nitrogen atoms. The function below projects the ROHF molecular orbital coefficients onto the atomic basis functions of these specific Nitrogens. By computing the spatial weight of each MO on these atoms, we can automatically identify the deep-level frontier orbitals (flagged by a $>25\%$ localization weight) that reside within the bandgap.
+Since the $V_B^-$ defect wavefunctions are tightly bound to the vacancy, they exhibit strong spatial localization on the three nearest-neighbor Nitrogen atoms(we confirmed this from our projected DOS analysis). The function below projects the ROHF molecular orbital coefficients onto the atomic basis functions of these specific Nitrogens. By computing the spatial weight of each MO on these atoms, we can automatically identify the deep-level frontier orbitals (flagged by a $>25\%$ localization weight) that reside within the bandgap.
 
 
 ```python
@@ -449,7 +449,7 @@ def analyze_defect_orbitals(mf, mol, state_name):
     weights = np.sum(C[defect_ao_mask, :]**2, axis=0)
 
     # 5. Print the frontier orbitals (around the HOMO/LUMO gap)
-    print(f"\n=== {state_name.upper()}: MO Defect Weights (Frontier Region) ===")
+    print(f"\n=== {state_name.upper()}: MO Defect Weights ===")
     print(f"{'MO Index':>10} | {'Energy (eV)':>12} | {'Occupation':>10} | {'Defect-N Weight':>15}")
     print("-" * 60)
 
@@ -478,7 +478,7 @@ energies_ex, occ_ex, weights_ex = analyze_defect_orbitals(mf_ex, mol_ex, "Excite
 ```
 
     
-    === GROUND STATE: MO Defect Weights (Frontier Region) ===
+    === GROUND STATE: MO Defect Weights ===
       MO Index |  Energy (eV) | Occupation | Defect-N Weight
     ------------------------------------------------------------
             34 |      -8.4506 |        2.0 |          0.083
@@ -496,7 +496,7 @@ energies_ex, occ_ex, weights_ex = analyze_defect_orbitals(mf_ex, mol_ex, "Excite
             46 |       9.2174 |        0.0 |          0.018
             47 |       9.2174 |        0.0 |          0.018
     
-    === EXCITED STATE: MO Defect Weights (Frontier Region) ===
+    === EXCITED STATE: MO Defect Weights ===
       MO Index |  Energy (eV) | Occupation | Defect-N Weight
     ------------------------------------------------------------
             34 |      -8.3238 |        2.0 |          0.111
@@ -515,7 +515,7 @@ energies_ex, occ_ex, weights_ex = analyze_defect_orbitals(mf_ex, mol_ex, "Excite
             47 |       9.3111 |        0.0 |          0.021
 
 
-This isolates exactly six deeply localized molecular orbitals within bandgap (indices 36 through 41). This result perfectly aligns with the established theoretical models and literature for the $V_B^-$ defect in hBN<a href="#ref2">[2]</a>. In the idealized lattice configuration, the removal of the Boron atom leaves unpassivated dangling bonds on the three adjacent Nitrogen atoms. The three in-plane $sp^2$ orbitals and three out-of-plane $p_z$ orbitals hybridize to form six symmetry-adapted defect molecular orbitals ($a_1$', $e$', $a_2$'', $e$'')<a href="#ref5">[2]</a>,<a href="#ref5">[5]</a>. The output reflects this exact structure populated by the expected **10 active electrons** (nine contributed by the surrounding Nitrogens and one captured from the lattice). 
+This isolates exactly six deeply localized molecular orbitals within bandgap (indices 36 through 41). This result perfectly aligns with the established theoretical models and literatures for the $V_B^-$ defect in hBN<a href="#ref2">[2]</a>. In the idealized lattice configuration, the removal of the Boron atom leaves unpassivated dangling bonds on the three adjacent Nitrogen atoms. The three in-plane $sp^2$ orbitals and three out-of-plane $p_z$ orbitals hybridize to form six symmetry-adapted defect molecular orbitals ($a_1$', $e$', $a_2$'', $e$'')<a href="#ref5">[2]</a>,<a href="#ref5">[5]</a>. The output reflects this exact structure populated by the expected **10 active electrons** (nine contributed by the surrounding Nitrogens and one captured from the lattice). 
 
 We can observe several properties directly in these state energies:
 *   **The Triplet Ground State:** In the ground state output, the lowest four defect orbitals (36-39) are completely filled. The two highest orbitals in this active space (indices 40 and 41) correspond to the doubly degenerate $e$' states at $0.1477 \text{ eV}$. Following Hund’s rules, these are exactly half-occupied with parallel spins, mathematically confirming the highly correlated $S=1$ ($^3A_2'$) triplet ground state.
@@ -529,7 +529,7 @@ To ensure our active space orbitals are unbiased and accurately describe both th
 1. **Pre-conditioning:** A standard first-order solver loosely converges the state-averaged orbitals.
 2. **Exact Optimization:** A heavily damped, second-order Newton solver (with step-size restrictions and level shifting) tightly converges the wavefunction to escape local minima.
 
-Once converged, this step extracts the exact classical one-electron ($h_1$) and two-electron ($h_2$) interaction integrals, along with the core energy shift ($E_{core}$), which will form the Hamiltonian for our downstream quantum simulation.
+Once converged, this step extracts the exact classical one-electron ($h_1$) and two-electron ($h_2$) interaction integrals, along with the core energy shift ($E_{core}$), which will form the Hamiltonian for our quantum simulation.
 
 
 ```python
@@ -610,7 +610,7 @@ With the CASSCF algorithm successfully converged, we have isolated the strong el
 
 ### Visualizing the Active Space Orbitals
 
-While the numerical spatial weights confirmed our orbital selection earlier, visually inspecting the electron density provides the ultimate physical validation. To do this, we extract the optimized molecular orbital coefficients (`mo_coeff`) from our saved CASSCF data and project them onto a 3D volumetric grid. 
+While the numerical spatial weights confirmed our orbital selection earlier, visually inspecting the electron density provides the further validation. To do this, we extract the optimized molecular orbital coefficients (`mo_coeff`) from our saved CASSCF data and project them onto a 3D volumetric grid. 
 
 Using PySCF's `cubegen` tool, we generate standard `.cube` files for all six orbitals within our active space (indices 36-41) for both the ground and excited state geometries.
 
@@ -639,7 +639,7 @@ print("--- Cube Files Generated for Active Space Orbitals ---")
 
 ### Ground State Defect Orbitals
 
-The isosurface plots given below display the six frontier molecular orbitals (indices 36-41) selected for our ground state active space. The green and magenta lobes represent the positive and negative phases of the electron wavefunction, respectively. As mathematically predicted by our spatial weight analysis, the electron density is highly localized around the central Boron vacancy and its three nearest-neighbor Nitrogen atoms.
+The isosurface plots given below display the six molecular orbitals (indices 36-41) selected for our ground state active space. The green and magenta lobes represent the positive and negative phases of the electron wavefunction, respectively. As mathematically predicted by our spatial weight analysis, the electron density is highly localized around the central Boron vacancy and its three nearest-neighbor Nitrogen atoms.
 
 <p align="center">
   <img src="images/gd_orbitals.jpg" width="700">
@@ -677,12 +677,23 @@ print(f"Loaded Ground State h1 shape: {h1_gd.shape}")
 print(f"Restored Ground State h2 shape: {h2_gd.shape}")
 print(f"Core Energy Shift: {ecore_gd:.6f} Ha")
 
-# 2. Inject the integrals into Qiskit's Hamiltonian builder
+# Inject the integrals into Qiskit's Hamiltonian builder
 hamiltonian_gd = ElectronicEnergy.from_raw_integrals(h1_a=h1_gd, h2_aa=h2_gd)
 hamiltonian_gd.nuclear_repulsion_energy = ecore_gd
 
-# 3. Generate the Second-Quantized Fermionic Operator
+# Generate the Second-Quantized Fermionic Operator
 fermionic_op_gd = hamiltonian_gd.second_q_op()
+
+# For the Excited State
+h1_ex = data['h1_ex']
+h2_ex = ao2mo.restore(1, data['h2_ex'], 6)
+ecore_ex = data['ecore_ex'].item()
+
+hamiltonian_ex = ElectronicEnergy.from_raw_integrals(h1_a=h1_ex, h2_aa=h2_ex)
+hamiltonian_ex.nuclear_repulsion_energy = ecore_ex
+fermionic_op_ex = hamiltonian_ex.second_q_op()
+
+qubit_op_ex = mapper.map(fermionic_op_ex)
 
 print("Fermionic Operator successfully built!")
 print(f"Total Spin-Orbitals: {fermionic_op_gd.register_length}")
@@ -695,13 +706,13 @@ print(f"Total Spin-Orbitals: {fermionic_op_gd.register_length}")
     Total Spin-Orbitals: 12
 
 
-Because our CAS(10,6) active space contains 6 spatial orbitals, and each spatial orbital can hold two electrons (spin-up and spin-down), there are exactly 12 possible spin-orbitals. In the upcoming mapping step, each of these fermionic spin-orbitals will be transformed into a distinct quantum bit (qubit) for the VQE circuit.
+Because our CAS(10,6) active space contains 6 spatial orbitals, and each spatial orbital can hold two electrons (spin-up and spin-down), there are exactly 12 possible spin-orbitals.
 
 ### Qubit Mapping and Symmetry Reduction
 
 While the fermionic operator perfectly describes the electron interactions, quantum algorithms operate on qubits. We must therefore map the fermionic creation and annihilation operators into tensor products of Pauli spin matrices (X, Y, Z). 
 
-For this transformation, we employ the **Parity Mapping** technique rather than the standard Jordan-Wigner transform. Because our physical system strictly conserves both the total number of electrons (10) and the total spin projection (a triplet state comprising 6 alpha and 4 beta electrons), the parity encoding allows us to exploit mathematical symmetries. By explicitly passing `num_particles` to Qiskit, the mapper automatically factors out these conserved quantities. This tapering process elegantly removes two qubits from the simulation without sacrificing any exactness in the resulting Hamiltonian.
+For this transformation, we employ the **Parity Mapping** technique rather than the standard Jordan-Wigner transform. Because our physical system strictly conserves both the total number of electrons (10) and the total spin projection (a triplet state comprising 6 alpha and 4 beta electrons<a href="#ref2">[2]</a>), the parity encoding allows us to exploit mathematical symmetries. By explicitly passing `num_particles` to Qiskit, the mapper automatically factors out these conserved quantities. This tapering process elegantly removes two qubits from the simulation without sacrificing any exactness in the resulting Hamiltonian.
 
 
 ```python
@@ -710,7 +721,7 @@ num_spatial_orbitals = 6
 
 mapper = ParityMapper(num_particles=num_particles)
 
-# 2. Translate the Fermionic operator to a Pauli-based Qubit operator
+# Translate the Fermionic operator to a Pauli-based Qubit operator
 print("Mapping Fermionic operator to Qubits...")
 qubit_op_gd = mapper.map(fermionic_op_gd)
 
@@ -782,16 +793,6 @@ time_gd = time.time() - start_time
 
 E_quantum_gd = vqe_result_gd.eigenvalue.real
 print(f"VQE Ground State Energy: {E_quantum_gd:.6f} Ha (Took {time_gd:.1f}s)")
-
-h1_ex = data['h1_ex']
-h2_ex = ao2mo.restore(1, data['h2_ex'], 6)
-ecore_ex = data['ecore_ex'].item()
-
-hamiltonian_ex = ElectronicEnergy.from_raw_integrals(h1_a=h1_ex, h2_aa=h2_ex)
-hamiltonian_ex.nuclear_repulsion_energy = ecore_ex
-fermionic_op_ex = hamiltonian_ex.second_q_op()
-
-qubit_op_ex = mapper.map(fermionic_op_ex)
 
 
 # Excited State Optimization (single manual deflation)
