@@ -69,7 +69,7 @@ To achieve this, we used a modular, four-step pipeline combining PySCF<a href="#
 * **Classical Pre-processing**: PySCF executes ROHF and State-Averaged CASSCF(10,6) calculations to isolate the active space and extract the essential interaction integrals($h_1$, $h_2$) and core energy shifts($E_{core}$) for both ground and excited state geometries.
 - **Hamiltonian Mapping**: Qiskit transforms the classical integrals into fermionic operators, applying a Parity Mapper with 2-qubit reduction to yield an efficient, compressed 10-qubit Hamiltonian.
 + **Variational Quantum Optimization**: A Variational Quantum Eigensolver(VQE) pipline(UCCSD ansatz, L-BFGS-G Optimizer) minimizes the ground state, while a Variational Quantum Deflation(VQD) approach resloves the excited state.
-* **ZPL Evaluation and Benchmarking**: The quantum eigenvalues and classical core shifts are recombined to compute the final ZPL. This quantum derived result is explicitly validated against exact classical Full Configuration Interaction(FCI) calcualtions and further benchmarked against a classical reference ZPL obtained via constrained occupation($\Delta$SCF) methods.
+* **ZPL Evaluation and Benchmarking**: The quantum eigenvalues and classical core shifts are recombined to compute the final ZPL. This quantum derived result is explicitly validated against exact classical Full Configuration Interaction(FCI) calcualtions and further benchmarked against a classical reference ZPL obtained via constrained occupation($\Delta$ SCF) methods.
 
 ## Classical Pre-processing
 
@@ -929,7 +929,7 @@ print(f"\n ZPL(Classical): {ZPL_Exact_eV:.4f} eV")
 
 ### Constrained Occupation ($\Delta$ SCF) Calculation
 
-To fully contextualize the accuracy of our quantum simulation, we compare our hybrid quantum ZPL against a purely classical Density Functional Theory (DFT) baseline. For this, we utilized the **constrained occupation ($\Delta$SCF) method** within Quantum Espresso<a href="#ref14">[14]</a>. 
+To fully contextualize the accuracy of our quantum simulation, we compare our hybrid quantum ZPL against a purely classical Density Functional Theory (DFT) baseline. For this, we utilized the **constrained occupation ($\Delta$ SCF) method** within Quantum Espresso<a href="#ref14">[14]</a>. 
 
 In this approach, the excited state is forced by manually constraining the electronic occupancies (promoting an electron from the deep defect level to the higher-energy SOMO) during the self-consistent field (SCF) relaxation cycle, rather than allowing the electrons to naturally settle into the ground state.
 
@@ -950,7 +950,7 @@ $$ \text{ZPL}_{} = 0.11982037 \text{ Ry} \times 13.6057 \text{ eV/Ry} = \mathbf{
 
 The constrained occupation $\Delta$ SCF calculation yields a ZPL of approximately $1.63 \text{ eV}$. Interestingly, this purely classical DFT result falls deceptively close to known experimental optical transitions for this defect. However, it is critical to recognize that this apparent accuracy is an artifact of fortuitous error cancellation rather than physical rigor. 
 
-It is documented in the literature that the PBE functional systematically suffers from severe self-interaction errors and drastically underestimates the fundamental bandgap and localized state energies of wide-gap insulators like hBN<a href="#ref12">[12]</a>. The fact that the $\Delta$SCF method produces a seemingly reasonable ZPL is an unexpected coincidence where the massive energetic errors in the ground and excited state geometries happen to cancel each other out<a href="#ref6">[6]</a>.
+It is documented in the literature that the PBE functional systematically suffers from severe self-interaction errors and drastically underestimates the fundamental bandgap and localized state energies of wide-gap insulators like hBN<a href="#ref12">[12]</a>. The fact that the $\Delta$ SCF method produces a seemingly reasonable ZPL is an unexpected coincidence where the massive energetic errors in the ground and excited state geometries happen to cancel each other out<a href="#ref6">[6]</a>.
 
 ## Results and Discussion
 
@@ -970,7 +970,7 @@ To evaluate the accuracy and validity of our hybrid quantum-classical pipeline, 
 
 Our variational quantum simulation (VQE/VQD) successfully reproduces the classical CASSCF limit of 1.497 eV for our chosen active space and cluster geometry. This internal consistency confirms that the Qiskit-based quantum optimization successfully converged to the true ground and excited states of the mapped Hamiltonian without getting trapped in local minima or violating spin symmetries.
 
-Our PBE $\Delta$SCF result (1.63 eV) appears deceptively close to the experimental value (1.60 eV). However, comparing this to the HSE06 $\Delta$SCF calculation by Ivády et al.<a href="#ref1">[1]</a> (1.71 eV) exposes the single-reference limitations. While HSE06 partially mitigates the self-interaction error inherent to PBE, it overestimates the transition energy. The apparent accuracy of our PBE calculation is thus a byproduct of error cancellation rather than an exact physical representation of the correlated electron dynamics.
+Our PBE $\Delta$ SCF result (1.63 eV) appears deceptively close to the experimental value (1.60 eV). However, comparing this to the HSE06 $\Delta$ SCF calculation by Ivády et al.<a href="#ref1">[1]</a> (1.71 eV) exposes the single-reference limitations. While HSE06 partially mitigates the self-interaction error inherent to PBE, it overestimates the transition energy. The apparent accuracy of our PBE calculation is thus a byproduct of error cancellation rather than an exact physical representation of the correlated electron dynamics.
 
 Finally, benchmarking against the experimental value of 1.60 eV (Qian et al. 2022)<a href="#ref7">[7]</a> is also questionable. The exact nature of this cavity-enhanced experimental peak is disputed in the literature, with ongoing debate as to whether the 1.60 eV measurement represents the true, isolated Zero-Phonon Line (ZPL) or the maximum of the Phonon Sideband (PSB). 
 
@@ -978,7 +978,7 @@ Finally, benchmarking against the experimental value of 1.60 eV (Qian et al. 202
 
 In this study, we successfully developed and executed a hybrid classical-quantum computational pipeline to simulate the electronic structure and optical properties of the negatively charged boron vacancy ($V_B^-$) in hexagonal boron nitride (hBN). By bridging classical Density Functional Theory (DFT) with exact multi-reference chemistry (PySCF) and quantum simulation (Qiskit), we modeled the complex localized physics of this solid-state quantum emitter. 
 
-Our methodology systematically isolated a CAS(10,6) active space comprising the deep-level dangling bonds of the three nearest-neighbor Nitrogen atoms. We successfully captured the defining physical characteristics of the defect, including its strongly correlated $S=1$ triplet ground state and the symmetry-breaking Jahn-Teller distortion present in the excited state. By translating the fermionic Hamiltonian into a qubit operator via parity mapping, we applied Variational Quantum Eigensolver (VQE) and Variational Quantum Deflation (VQD) algorithms to compute the precise electronic eigenvalues. The quantum simulation yielded a Zero-Phonon Line (ZPL) of $1.4972 \text{ eV}$. While this precisely matched our classical exact diagonalization benchmark—proving the validity and convergence of our constrained UCCSD quantum ansatz—it also highlighted the fundamental constraints of our truncated system. Furthermore, comparing our multi-reference results against a single-reference PBE $\Delta$SCF calculation ($1.63 \text{ eV}$) exposed the latter's reliance on fortuitous error cancellation.
+Our methodology systematically isolated a CAS(10,6) active space comprising the deep-level dangling bonds of the three nearest-neighbor Nitrogen atoms. We successfully captured the defining physical characteristics of the defect, including its strongly correlated $S=1$ triplet ground state and the symmetry-breaking Jahn-Teller distortion present in the excited state. By translating the fermionic Hamiltonian into a qubit operator via parity mapping, we applied Variational Quantum Eigensolver (VQE) and Variational Quantum Deflation (VQD) algorithms to compute the precise electronic eigenvalues. The quantum simulation yielded a Zero-Phonon Line (ZPL) of $1.4972 \text{ eV}$. While this precisely matched our classical exact diagonalization benchmark—proving the validity and convergence of our constrained UCCSD quantum ansatz—it also highlighted the fundamental constraints of our truncated system. Furthermore, comparing our multi-reference results against a single-reference PBE $\Delta$ SCF calculation ($1.63 \text{ eV}$) exposed the latter's reliance on fortuitous error cancellation.
 
 While this pipeline establishes a robust proof-of-concept for quantum embedding of solid-state defects, several key refinements can be implemented to bring the computed ZPL closer to the thermodynamic limit and accurate experimental values:
 
@@ -999,7 +999,7 @@ While this pipeline establishes a robust proof-of-concept for quantum embedding 
 
 <a id="ref5"></a>[5] J. R. Reimers, J. Shen, M. Kianinia, and C. Bradac, "Photoluminescence, photophysics, and photochemistry of the $V_B^-$ defect in hexagonal boron nitride," *Phys. Rev. B* 101, 035306 (2020).
 
-<a id="ref6"></a>[6] Y. Xiong and G. Hautier, "$\Delta$SCF in VASP for excited-state defect computations: tips and pitfalls," *arXiv preprint* (2023).
+<a id="ref6"></a>[6] Y. Xiong and G. Hautier, "$\Delta$ SCF in VASP for excited-state defect computations: tips and pitfalls," *arXiv preprint* (2023).
 
 <a id="ref7"></a>[7] C. Qian, V. Villafañe, M. Schalk, G. V. Astakhov, U. Kentsch, M. Helm, P. Soubelet, N. P. Wilson, R. Rizzato, and S. M. P. E. Höfling, "Zero-Phonon Line of the Boron Vacancy Center by Cavity-Enhanced Emission," *Nano Lett.* 22, 5137-5142 (2022).
 
