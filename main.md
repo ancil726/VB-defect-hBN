@@ -999,7 +999,7 @@ While this pipeline establishes a robust proof-of-concept for quantum embedding 
 
 <a id="ref5"></a>[5] J. R. Reimers, J. Shen, M. Kianinia, and C. Bradac, "Photoluminescence, photophysics, and photochemistry of the $V_B^-$ defect in hexagonal boron nitride," *Phys. Rev. B* 101, 035306 (2020).
 
-<a id="ref6"></a>[6] Y. Xiong and G. Hautier, "$\Delta$ SCF in VASP for excited-state defect computations: tips and pitfalls," *arXiv preprint* (2023).
+<a id="ref6"></a>[6] Y. Xiong and G. Hautier, "&Delta;SCF in VASP for excited-state defect computations: tips and pitfalls," *arXiv preprint* (2023).
 
 <a id="ref7"></a>[7] C. Qian, V. Villafañe, M. Schalk, G. V. Astakhov, U. Kentsch, M. Helm, P. Soubelet, N. P. Wilson, R. Rizzato, and S. M. P. E. Höfling, "Zero-Phonon Line of the Boron Vacancy Center by Cavity-Enhanced Emission," *Nano Lett.* 22, 5137-5142 (2022).
 
