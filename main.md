@@ -73,7 +73,7 @@ To achieve this, we used a modular, four-step pipeline combining PySCF for the c
 
 ## Classical Pre-processing
 
-Before building the molecular cluster and defining our active space, we first initialize our computational environment. This workflow relies heavily on **PySCF**<a href="#ref15">[15]</a> for the classical mean-field calculations, and **Qiskit** for the quantum embedding and variational algorithms.
+Before building the molecular cluster and defining our active space, we first initialize our computational environment. This workflow relies heavily on **PySCF** for the classical mean-field calculations, and **Qiskit** for the quantum embedding and variational algorithms.
 
 
 ```python
