@@ -192,7 +192,7 @@ print(f"Vacancy to N25_ex: {dist(vacancy, N25_ex):.5f} Å")
 
 
 \
-As confirmed by the output, the ground state maintains a perfect $D_{3h}$ symmetry, with all three nearest-neighbor nitrogen bonds being identical at 1.50356 Å. 
+As confirmed by the output, the ground state maintains a perfect $D_{3h}$ symmetry, with all three nearest-neighbor nitrogen bonds being identical at 1.50356 <p> &angst; </p>. 
 
 However, the excited state undergoes a spontaneous structural relaxation known as the **Jahn-Teller distortion**. Because the excited electronic state is orbitally degenerate, the system lowers its overall energy by breaking its highly symmetric geometry. This symmetry breaking is clearly evident in the unequal bond lengths of the excited cluster, which lifts the electronic degeneracy and physically drives the defect into a new, stable configuration.
 
