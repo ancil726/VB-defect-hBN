@@ -456,7 +456,7 @@ def analyze_defect_orbitals(mf, mol, state_name):
     # Find the HOMO index (last occupied orbital)
     homo_idx = np.where(mo_occ > 0)[0][-1]
 
-    # Print 10 orbitals below the HOMO and 10 above the LUMO
+    # Print 7 orbitals below the HOMO and 7 above the LUMO
     for i in range(max(0, homo_idx - 7), min(len(mo_energies_eV), homo_idx + 7)):
         # Highlight orbitals that have high localization on the defect (> 25% weight)
         highlight = "  <-- DEFECT STATE" if weights[i] > 0.25 else ""
