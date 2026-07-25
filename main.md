@@ -94,7 +94,7 @@ from qiskit_nature.second_q.circuit.library import HartreeFock, UCCSD
 from qiskit_nature.second_q.hamiltonians import ElectronicEnergy
 ```
 
-To model the defect environment, we extract a finite 12-atom core from the optimized supercell by converting fractional lattice vectors into Cartesian coordinates. We then passivate the boundaries of this finite cluster with 9 capping hydrogen atoms based on the local bonding geometry to prevent artificial edge effects.
+To model the defect environment, we extract a finite 12-atom core from the optimized supercell, obtained from Quantum Espresso and by converting fractional lattice vectors into Cartesian coordinates. We then passivate the boundaries of this finite cluster with 9 capping hydrogen atoms based on the local bonding geometry to prevent artificial edge effects.
 
 
 ```python
