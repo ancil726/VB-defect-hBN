@@ -15,7 +15,7 @@ The $V_B^{-}$ defect in hBN is a highly promising solid-state color center for a
 The workflow relies on a modular, four-step methodology bridging mean-field calculations and quantum state optimization:
 
 *   **Classical Pre-processing (Quantum Espresso & PySCF):** 
-    *   Periodic DFT (PBE functional) is used to relax a 49-atom supercell, capturing the $C_{3v}$ ground state and the Jahn-Teller distorted excited state.
+    *   Periodic DFT (PBE functional) is used to relax a 49-atom supercell, capturing the $D_{3h}$ ground state and the Jahn-Teller distorted excited state.
     *   A finite 21-atom cluster is extracted and passivated.
     *   Restricted Open-Shell Hartree-Fock (ROHF) and State-Averaged CASSCF(10,6) calculations isolate the active space and extract the one- and two-electron interaction integrals.
 *   **Hamiltonian Mapping (Qiskit):** Classical integrals are transformed into fermionic operators. A Parity Mapper with two-qubit reduction compresses the active space into an efficient 10-qubit Hamiltonian.
@@ -29,7 +29,7 @@ The workflow relies on a modular, four-step methodology bridging mean-field calc
 
 Our hybrid variational quantum simulation (VQE/VQD) yielded a pure electronic ZPL of **1.497 eV**. 
 
-This precisely matches our exact classical diagonalization (FCI) benchmark for the defined active space, proving the validity of the constrained UCCSD quantum ansatz. It also highlights the limitations of standard single-reference $\Delta$SCF methods, which rely heavily on error cancellation when dealing with severe self-interaction errors in wide-gap insulators.
+This precisely matches our exact classical diagonalization (FCI) benchmark for the defined active space, proving the validity of the constrained UCCSD quantum ansatz. It also highlights the limitations of standard single-reference $\Delta$ SCF methods, which rely heavily on error cancellation when dealing with severe self-interaction errors in wide-gap insulators.
 
 ##  Repository Structure
 
