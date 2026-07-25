@@ -973,7 +973,7 @@ Our variational quantum simulation (VQE/VQD) successfully reproduces the classic
 
 Our PBE $\Delta$ SCF result (1.63 eV) appears deceptively close to the experimental value (1.60 eV). However, comparing this to the HSE06 $\Delta$ SCF calculation by Ivády et al.<a href="#ref1">[1]</a> (1.71 eV) exposes the single-reference limitations. While HSE06 partially mitigates the self-interaction error inherent to PBE, it overestimates the transition energy. The apparent accuracy of our PBE calculation is thus a byproduct of error cancellation rather than an exact physical representation of the correlated electron dynamics.
 
-Finally, benchmarking against the experimental value of 1.60 eV (Qian et al. 2022)<a href="#ref7">[7]</a> is also questionable. The exact nature of this cavity-enhanced experimental peak is disputed in the literature, with ongoing debate as to whether the 1.60 eV measurement represents the true, isolated Zero-Phonon Line (ZPL) or the maximum of the Phonon Sideband (PSB). 
+Finally, benchmarking against the experimental value of 1.60 eV (Qian et al. 2022)<a href="#ref7">[7]</a> is also questionable. The exact nature of this cavity-enhanced experimental peak is disputed in the literature<a href="#ref17">[17]</a>, with ongoing debate as to whether the 1.60 eV measurement represents the true, isolated Zero-Phonon Line (ZPL) or the maximum of the Phonon Sideband (PSB). 
 
 ### Conclusion and Future Directions
 
@@ -1019,3 +1019,5 @@ While this pipeline establishes a robust proof-of-concept for quantum embedding 
 <a id="ref15"></a>[15] Q. Sun *et al.*, "PySCF: the Python-based simulations of chemistry framework," *Wiley Interdiscip. Rev.: Comput. Mol. Sci.* 8, e1340 (2018).
 
 <a id="ref16"></a>[16] Qiskit contributors, "Qiskit: An Open-source Framework for Quantum Computing," (2023).
+
+<a id="ref17"></a>[17] Z. Benedek, &Aacute;. Ganyecz, O. Bulancea-Lindvall, G. Barcza, and V. Iv&aacute;dy, "An extended ab initio theory of the V<sub>B</sub><sup>&minus;</sup> center in hBN: excited states, Jahn-Teller distortion, and pressure dependence," arXiv preprint (2026).
