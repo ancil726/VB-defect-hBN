@@ -738,7 +738,7 @@ print(f"Total Pauli Strings:    {len(qubit_op_gd)}")
 
 While our 6-orbital active space naturally generated 12 fermionic spin-orbitals, the two-qubit reduction successfully compressed the problem down to exactly **10 qubits**. 
 
-Removing just 2 qubits reduces the dimension of the underlying Hilbert space by a factor of four (from 4,096 to 1,024 states), which significantly accelerates the upcoming Variational Quantum Eigensolver (VQE) optimization and minimizes the required quantum circuit depth. The defect's electronic Hamiltonian is now fully translated into a highly optimized list of interacting Pauli strings, ready for the quantum hardware ansatz.
+Removing just 2 qubits reduces the dimension of the underlying Hilbert space by a factor of four (from 4,096 to 1,024 states), which significantly accelerates the Variational Quantum Eigensolver (VQE) optimization and minimizes the required quantum circuit depth. The defect's electronic Hamiltonian is now fully translated into a highly optimized list of interacting Pauli strings, ready for the quantum hardware ansatz.
 
 ### Initial State Preparation
 
