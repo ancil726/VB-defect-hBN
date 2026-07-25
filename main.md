@@ -30,7 +30,7 @@ The $V_B^-$ defect in hBN exhibits $D_{3h}$ point-group symmetry in its idealize
 
 | Defect State | Orbital Origin | Degeneracy | 
 |:---:|:---:|:---:|
-| <i>a</i><sub>1</sub>'' | in-plane <i>sp</i><sup>2</sup> (&sigma;) | 1 |
+| <i>a</i><sub>1</sub>' | in-plane <i>sp</i><sup>2</sup> (&sigma;) | 1 |
 | <i>e</i>' | in-plane <i>sp</i><sup>2</sup> (&sigma;) | 2 |
 | <i>a</i><sub>2</sub>'' | out-of-plane 2<i>p<sub>z</sub></i> (&pi;) | 1 |
 | <i>e</i>'' | out-of-plane 2<i>p<sub>z</sub></i> (&pi;) | 2 |
