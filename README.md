@@ -4,6 +4,13 @@ Welcome to the repository for the computational simulation of the negatively cha
 
 This project demonstrates a proof-of-concept pipeline that integrates classical *ab initio* Density Functional Theory (DFT) and exact multi-reference chemistry with near-term quantum algorithms to compute the Zero-Phonon Line (ZPL) of a solid-state quantum emitter.
 
+##  Repository Structure
+
+*   [`main.md`](main.md): The comprehensive, fully formatted project report including detailed theoretical background, orbital visualizations, band structure analysis, and complete code execution.
+*   [`main.ipynb`](main.ipynb): The raw, executable Jupyter Notebook containing the full Python pipeline.
+*   `hBN_defect_cluster_ground.xyz` / `excited.xyz`: Optimized Cartesian coordinates for the localized defect clusters.
+*   `hBN_defect_integrals_CASSCF_ONLY.npz`: Extracted classical Hamiltonian integrals.
+
 ##  Project Overview
 
 The $V_B^{-}$ defect in hBN is a highly promising solid-state color center for applications in quantum sensing and quantum information processing. Exact classical simulation of strongly correlated defect systems is often computationally unfeasible. This project tackles that bottleneck using a **hybrid classical-quantum embedding approach**:
@@ -30,13 +37,6 @@ The workflow relies on a modular, four-step methodology bridging mean-field calc
 Our hybrid variational quantum simulation (VQE/VQD) yielded a pure electronic ZPL of **1.497 eV**. 
 
 This precisely matches our exact classical diagonalization (FCI) benchmark for the defined active space, proving the validity of the constrained UCCSD quantum ansatz. It also highlights the limitations of standard single-reference $\Delta$ SCF methods, which rely heavily on error cancellation when dealing with severe self-interaction errors in wide-gap insulators.
-
-##  Repository Structure
-
-*   [`main.md`](main.md): The comprehensive, fully formatted project report including detailed theoretical background, orbital visualizations, band structure analysis, and complete code execution.
-*   [`main.ipynb`](main.ipynb): The raw, executable Jupyter Notebook containing the full Python pipeline.
-*   `hBN_defect_cluster_ground.xyz` / `excited.xyz`: Optimized Cartesian coordinates for the localized defect clusters.
-*   `hBN_defect_integrals_CASSCF_ONLY.npz`: Extracted classical Hamiltonian integrals.
 
 ##  Dependencies
 
